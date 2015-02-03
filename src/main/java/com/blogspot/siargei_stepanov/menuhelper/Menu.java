@@ -3,15 +3,11 @@ package com.blogspot.siargei_stepanov.menuhelper;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Siarhei_Stsiapanau on 1/9/2015.
- */
 public class Menu {
-    private static final String SEPARATOR = " - ";
+    private static final String MENU_PATTERN = "%s - %s\n";
     private List<MenuEntry> entries = new ArrayList<MenuEntry>();
     private boolean isExit = false;
 
@@ -39,9 +35,10 @@ public class Menu {
         }
     }
 
-    public void addEntry(MenuEntry entry) {
+    public Menu addEntry(MenuEntry entry) {
         int index = entries.size() - 1;
         entries.add(index, entry);
+        return this;
     }
 
     private void printMenu() {
@@ -49,7 +46,8 @@ public class Menu {
         buffer.append("\nMenu:\n");
         for (int i = 0; i < entries.size(); i++) {
             MenuEntry entry = entries.get(i);
-            buffer.append((i + 1) + SEPARATOR + entry.getTitle() + "\n");
+            String entryFormatted = String.format(MENU_PATTERN, (i + 1), entry.getTitle());
+            buffer.append(entryFormatted);
         }
         System.out.print(buffer.toString());
     }

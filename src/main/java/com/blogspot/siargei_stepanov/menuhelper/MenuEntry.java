@@ -1,9 +1,5 @@
 package com.blogspot.siargei_stepanov.menuhelper;
 
-/**
- * Created by Siarhei_Stsiapanau on 1/9/2015.
- */
-
 public abstract class MenuEntry {
     private String title;
 
